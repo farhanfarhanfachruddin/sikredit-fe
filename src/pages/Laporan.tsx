@@ -140,9 +140,9 @@ export default function LaporanPage() {
                     <tr><th>Nasabah</th><th>No HP</th><th>Alamat</th><th>Hasil</th></tr>
                   </thead>
                   <tbody>
-                    {[...data.detail.sudah_ditagih, ...data.detail.belum_ditagih, ...data.detail.tidak_ada].length === 0 ? (
-                      <tr><td colSpan={4} className="text-center" style={{ padding: 24 }}>Tidak ada data</td></tr>
-                    ) : [...data.detail.sudah_ditagih, ...data.detail.tidak_ada].map((p: any) => (
+                    {[...(data.detail.sudah_ditagih ?? []), ...(data.detail.belum_ditagih ?? []), ...(data.detail.tidak_ada ?? [])].length === 0 ? (
+  <tr><td colSpan={4} className="text-center" style={{ padding: 24 }}>Tidak ada data</td></tr>
+) : [...(data.detail.sudah_ditagih ?? []), ...(data.detail.tidak_ada ?? [])].map((p: any) => (
                       <tr key={p._id}>
                         <td><strong>{(p.nasabah_id as any)?.nama_lengkap ?? '-'}</strong></td>
                         <td>{(p.nasabah_id as any)?.no_hp ?? '-'}</td>
