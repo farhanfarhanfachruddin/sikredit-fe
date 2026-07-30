@@ -58,3 +58,21 @@ export const laporanAPI = {
   cicilan: (periode?: string) => api.get('/laporan/cicilan', { params: { periode } }),
   penagihan: (periode?: string) => api.get('/laporan/penagihan', { params: { periode } }),
 }
+
+// ── UPLOAD ──
+export const uploadAPI = {
+  uploadKTP: (nasabahId: string, file: File) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post(`/upload/ktp/${nasabahId}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  },
+  uploadJaminan: (jaminanId: string, file: File) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post(`/upload/jaminan/${jaminanId}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  },
+}

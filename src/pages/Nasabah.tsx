@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
-import { nasabahAPI, jaminanAPI } from '../api'
+import { nasabahAPI, jaminanAPI, uploadAPI } from '../api'
 import { Nasabah } from '../types'
 
 const fmtRp = (n: number) =>
@@ -25,6 +25,10 @@ export default function NasabahPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
+  const [showUploadModal, setShowUploadModal] = useState(false)
+const [uploadNasabahId, setUploadNasabahId] = useState<string | null>(null)
+const [uploadFile, setUploadFile] = useState<File | null>(null)
+const [uploading, setUploading] = useState(false)
 
   const showToast = (msg: string) => {
     setToast(msg)
@@ -166,6 +170,7 @@ export default function NasabahPage() {
                   <td>{fmtRp(n.penghasilan)}</td>
                   <td>
                     <button className="btn btn-sm btn-outline" onClick={() => openEdit(n)}>✏️ Edit</button>
+                    <button className="btn btn-sm btn-primary" style={{ marginLeft: 4 }} onClick={() => { setUploadNasabahId(n._id); setUploadFile(null); setShowUploadModal(true) }}>📷 KTP</button>
                   </td>
                 </tr>
               ))}
@@ -269,6 +274,56 @@ export default function NasabahPage() {
           </div>
         </div>
       )}
+
+      {showUploadModal && (
+  <div className="modal-overlay" onClick={() => setShowUploadModal(false)}>
+    <div className="modal" onClick={e => e.stopPropagation()}>
+      <div className="modal-header">
+        <div><h3>📷 Upload Foto KTP</h3><p>Format: JPG, PNG, PDF · Maks 5MB</p></div>
+        <button className="btn-close" onClick={() => setShowUploadModal(false)}>✕</button>
+      </div>
+      <div className="modal-body">
+        <div className="form-group">
+          <label>Pilih File Foto KTP</label>
+          <input
+            type="file"
+            className="form-control"
+            accept="image/jpeg,image/png,application/pdf"
+            onChange={e => setUploadFile(e.target.files?.[0] ?? null)}
+          />
+          {uploadFile && (
+            <div style={{ fontSize: 12, color: 'var(--success)', marginTop: 6 }}>
+              ✅ File dipilih: {uploadFile.name}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="modal-footer">
+        <button className="btn btn-outline" onClick={() => setShowUploadModal(false)}>Batal</button>
+        <button
+          className="btn btn-primary"
+          disabled={!uploadFile || uploading}
+          onClick={async () => {
+            if (!uploadFile || !uploadNasabahId) return
+            setUploading(true)
+            try {
+              await uploadAPI.uploadKTP(uploadNasabahId, uploadFile)
+              showToast('✅ Foto KTP berhasil diupload!')
+              setShowUploadModal(false)
+              loadData()
+            } catch {
+              showToast('❌ Gagal upload foto KTP')
+            } finally {
+              setUploading(false)
+            }
+          }}
+        >
+          {uploading ? '⏳ Mengupload...' : '📤 Upload'}
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
       {/* Toast */}
       {toast && <div className="toast success">{toast}</div>}
