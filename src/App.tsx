@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Nasabah from './pages/Nasabah'
 import Pengajuan from './pages/Pengajuan'
 import Penagihan from './pages/Penagihan'
+import CatatCicilan from './pages/CatatCicilan'
 import Laporan from './pages/Laporan'
 import CekTagihan from './pages/CekTagihan'
 
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/nasabah" element={<ProtectedRoute pemilikOnly><Nasabah /></ProtectedRoute>} />
           <Route path="/pengajuan" element={<ProtectedRoute pemilikOnly><Pengajuan /></ProtectedRoute>} />
           <Route path="/penagihan" element={<ProtectedRoute><Penagihan /></ProtectedRoute>} />
+          <Route path="/cicilan" element={<ProtectedRoute><CatatCicilan /></ProtectedRoute>} />
           <Route path="/laporan" element={<ProtectedRoute pemilikOnly><Laporan /></ProtectedRoute>} />
 
           {/* Default */}

@@ -11,12 +11,14 @@ const navItemsPemilik = [
   { to: '/dashboard', icon: '📊', label: 'Dashboard' },
   { to: '/nasabah', icon: '👥', label: 'Data Nasabah' },
   { to: '/pengajuan', icon: '📋', label: 'Pengajuan Pinjaman' },
+  { to: '/cicilan', icon: '💳', label: 'Catat Cicilan' },
   { to: '/penagihan', icon: '🎯', label: 'Penagihan Harian' },
   { to: '/laporan', icon: '📈', label: 'Laporan Rekap' },
 ]
 
 const navItemsOperator = [
   { to: '/dashboard', icon: '📊', label: 'Dashboard' },
+  { to: '/cicilan', icon: '💳', label: 'Catat Cicilan' },
   { to: '/penagihan', icon: '🎯', label: 'Penagihan Harian' },
 ]
 
