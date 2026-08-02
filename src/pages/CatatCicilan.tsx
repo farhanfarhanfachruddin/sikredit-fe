@@ -81,7 +81,7 @@ export default function CatatCicilanPage() {
     item.nasabah.no_hp.includes(search)
   )
 
-  cconst pilihNasabah = (item: NasabahAktif) => {
+ const pilihNasabah = (item: NasabahAktif) => {
   console.log('cicilan_berikutnya:', JSON.stringify(item.cicilan_berikutnya))
   setSelected(item)
   setStatusBayar(null)
