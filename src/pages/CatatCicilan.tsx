@@ -81,13 +81,14 @@ export default function CatatCicilanPage() {
     item.nasabah.no_hp.includes(search)
   )
 
-  const pilihNasabah = (item: NasabahAktif) => {
-    setSelected(item)
-    setStatusBayar(null)
-    setJumlah('')
-    setCatatan('')
-    setStep(2)
-  }
+  cconst pilihNasabah = (item: NasabahAktif) => {
+  console.log('cicilan_berikutnya:', JSON.stringify(item.cicilan_berikutnya))
+  setSelected(item)
+  setStatusBayar(null)
+  setJumlah('')
+  setCatatan('')
+  setStep(2)
+}
 
   const handleSimpan = async () => {
     if (!selected || !statusBayar) return
