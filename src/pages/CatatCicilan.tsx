@@ -359,11 +359,15 @@ export default function CatatCicilanPage() {
               <div className="form-group">
                 <label>Jumlah Diterima (Rp) <span className="req">*</span></label>
                 <input
-                  type="number"
-                  className="form-control"
-                  value={jumlah}
-                  onChange={e => setJumlah(e.target.value)}
-                  placeholder="Masukkan jumlah"
+  type="text"
+  className="form-control"
+  value={jumlah ? Number(jumlah.replace(/\./g, '')).toLocaleString('id-ID') : ''}
+  onChange={e => {
+    const raw = e.target.value.replace(/\./g, '').replace(/[^0-9]/g, '')
+    setJumlah(raw)
+  }}
+  placeholder="Masukkan jumlah"
+/>
                 />
                 <div className="form-hint">
                   Cicilan bulan ini: <strong>{fmtRp(selected.cicilan_berikutnya?.jumlah_cicilan ?? 0)}</strong>
