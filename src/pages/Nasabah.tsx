@@ -242,7 +242,16 @@ const [uploading, setUploading] = useState(false)
                 </div>
                 <div className="form-group">
                   <label>Penghasilan Bulanan (Rp) <span className="req">*</span></label>
-                  <input type="number" className="form-control" placeholder="Contoh: 2500000" value={form.penghasilan} onChange={f('penghasilan')} />
+                  <input
+  type="text"
+  className="form-control"
+  placeholder="Contoh: 2.500.000"
+  value={form.penghasilan ? Number(form.penghasilan.replace(/\./g, '')).toLocaleString('id-ID') : ''}
+  onChange={e => {
+    const raw = e.target.value.replace(/\./g, '').replace(/[^0-9]/g, '')
+    setForm(prev => ({ ...prev, penghasilan: raw }))
+  }}
+/>
                 </div>
               </div>
 
