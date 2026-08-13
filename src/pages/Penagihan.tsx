@@ -47,7 +47,12 @@ export default function PenagihanPage() {
 
   const handleCatat = async () => {
     if (!selected || !hasilForm.hasil) return
+    if ((hasilForm.hasil === 'Dibayar' || hasilForm.hasil === 'Dibayar Sebagian') && !hasilForm.jumlah) {
+      showToast('❌ Nominal wajib diisi!')
+      return
+    }
     setSaving(true)
+
     try {
       await penagihanAPI.catat({
         nasabah_id: selected.nasabah_id,
@@ -212,10 +217,15 @@ export default function PenagihanPage() {
               {(hasilForm.hasil === 'Dibayar' || hasilForm.hasil === 'Dibayar Sebagian') && (
                 <div className="form-group">
                   <label>Jumlah Diterima (Rp)</label>
-                  <input type="number" className="form-control"
-                    placeholder={`Cicilan: ${fmtRp(selected.jumlah_cicilan)}`}
-                    value={hasilForm.jumlah}
-                    onChange={e => setHasilForm(p => ({ ...p, jumlah: e.target.value }))} />
+                  <input 
+     type="text"
+    className="form-control"
+    placeholder={`Cicilan: ${fmtRp(selected.jumlah_cicilan)}`}
+    value={hasilForm.jumlah ? Number(hasilForm.jumlah.replace(/\./g, '')).toLocaleString('id-ID') : ''}
+    onChange={e => {
+      const raw = e.target.value.replace(/\./g, '').replace(/[^0-9]/g, '')
+      setHasilForm(p => ({ ...p, jumlah: raw }))
+    }} />
                 </div>
               )}
 
