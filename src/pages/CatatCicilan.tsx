@@ -368,7 +368,7 @@ export default function CatatCicilanPage() {
   }}
   placeholder="Masukkan jumlah"
 />
-                />
+                
                 <div className="form-hint">
                   Cicilan bulan ini: <strong>{fmtRp(selected.cicilan_berikutnya?.jumlah_cicilan ?? 0)}</strong>
                 </div>
