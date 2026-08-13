@@ -249,9 +249,16 @@ export default function PengajuanPage() {
               <div className="form-row">
                 <div className="form-group">
                   <label>Jumlah Pinjaman (Rp) <span className="req">*</span></label>
-                  <input type="number" className="form-control" placeholder="Contoh: 5000000"
-                    value={form.jumlah_pengajuan}
-                    onChange={e => setForm(p => ({ ...p, jumlah_pengajuan: e.target.value }))} />
+                  <input
+  type="text"
+  className="form-control"
+  placeholder="Contoh: 5.000.000"
+  value={form.jumlah_pengajuan ? Number(form.jumlah_pengajuan.replace(/\./g, '')).toLocaleString('id-ID') : ''}
+  onChange={e => {
+    const raw = e.target.value.replace(/\./g, '').replace(/[^0-9]/g, '')
+    setForm(p => ({ ...p, jumlah_pengajuan: raw }))
+  }}
+/>
                 </div>
                 <div className="form-group">
                   <label>
