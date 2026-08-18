@@ -11,6 +11,17 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null)
 
+// Helper: cek apakah JWT token sudah expired
+const isTokenExpired = (token: string): boolean => {
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]))
+    const now = Math.floor(Date.now() / 1000)
+    return payload.exp < now
+  } catch {
+    return true // kalau error parsing, anggap expired
+  }
+}
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
@@ -19,9 +30,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const savedToken = localStorage.getItem('token')
     const savedUser = localStorage.getItem('user')
+
     if (savedToken && savedUser) {
-      setToken(savedToken)
-      setUser(JSON.parse(savedUser))
+      // Cek apakah token sudah expired
+      if (isTokenExpired(savedToken)) {
+        // Token expired → hapus dan redirect ke login
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+      } else {
+        setToken(savedToken)
+        setUser(JSON.parse(savedUser))
+      }
     }
     setIsLoading(false)
   }, [])

@@ -108,6 +108,9 @@ export default function Dashboard() {
             <button className="btn btn-outline" onClick={() => navigate('/laporan')}>
               📈 Laporan Rekap
             </button>
+            <button className="btn btn-outline" onClick={() => window.open('/cek-tagihan', '_blank')}>
+  🔍 Cek Tagihan Nasabah
+</button>
           </div>
         </div>
       )}
