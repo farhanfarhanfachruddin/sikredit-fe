@@ -440,6 +440,14 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .login-stat-val { font-size: 22px; font-weight: 700; }
 .login-stat-label { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
 
+.password-field { position: relative; }
+.password-field .form-control { padding-right: 40px; }
+.password-field .toggle-pass {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--gray-400); font-size: 15px;
+  line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center;
+}
+
 .login-right { width: 400px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 32px; background: #fff; }
 .login-form-wrap { width: 100%; max-width: 340px; }
 .login-form-wrap h2 { font-size: 22px; font-weight: 700; color: var(--gray-800); margin-bottom: 4px; }

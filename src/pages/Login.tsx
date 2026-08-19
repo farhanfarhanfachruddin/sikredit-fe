@@ -76,20 +76,20 @@ export default function Login() {
         </p>
         <div className="login-stats">
           <div className="login-stat">
-            <div className="login-stat-val">SAW</div>
-            <div className="login-stat-label">Rekomendasi Kelayakan Kredit</div>
+            <div className="login-stat-val"></div>
+            <div className="login-stat-label"></div>
           </div>
           <div className="login-stat">
-            <div className="login-stat-val">TOPSIS</div>
-            <div className="login-stat-label">Prioritas Penagihan Harian</div>
+            <div className="login-stat-val"></div>
+            <div className="login-stat-label"></div>
           </div>
           <div className="login-stat">
-            <div className="login-stat-val">3 Aktor</div>
-            <div className="login-stat-label">Pemilik · Operator · Nasabah</div>
+            <div className="login-stat-val"></div>
+            <div className="login-stat-label"></div>
           </div>
           <div className="login-stat">
-            <div className="login-stat-val">7 UC</div>
-            <div className="login-stat-label">Use Case Lengkap</div>
+            <div className="login-stat-val"></div>
+            <div className="login-stat-label"></div>
           </div>
         </div>
       </div>
@@ -131,33 +131,25 @@ export default function Login() {
             />
           </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <div style={{ position: 'relative' }}>
-              <input
-                type={showPass ? 'text' : 'password'}
-                className="form-control"
-                placeholder="Masukkan password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={handleKeyDown}
-                disabled={locked}
-                style={{ paddingRight: 40 }}
-                autoComplete="current-password"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPass(!showPass)}
-                style={{
-                  position: 'absolute', right: 10, top: '50%',
-                  transform: 'translateY(-50%)', background: 'none',
-                  border: 'none', color: 'var(--gray-400)', fontSize: 16, cursor: 'pointer'
-                }}
-              >
-                {showPass ? '🙈' : '👁'}
-              </button>
-            </div>
-          </div>
+<div className="password-field">
+  <input
+    type={showPass ? 'text' : 'password'}
+    className="form-control"
+    placeholder="Masukkan password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    onKeyDown={handleKeyDown}
+    disabled={locked}
+    autoComplete="current-password"
+  />
+  <button
+    type="button"
+    className="toggle-pass"
+    onClick={() => setShowPass(!showPass)}
+  >
+    {showPass ? '🙈' : '👁'}
+  </button>
+</div>
 
           {attempts > 0 && !locked && (
             <div style={{ fontSize: 11, color: 'var(--danger)', marginBottom: 8, textAlign: 'right' }}>
