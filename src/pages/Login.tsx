@@ -131,26 +131,28 @@ export default function Login() {
             />
           </div>
 
-<div className="password-field">
-  <input
-    type={showPass ? 'text' : 'password'}
-    className="form-control"
-    placeholder="Masukkan password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    onKeyDown={handleKeyDown}
-    disabled={locked}
-    autoComplete="current-password"
-  />
-  <button
-    type="button"
-    className="toggle-pass"
-    onClick={() => setShowPass(!showPass)}
-  >
-    {showPass ? '🙈' : '👁'}
-  </button>
+<div className="form-group">
+  <label>Password</label>
+  <div className="password-field">
+    <input
+      type={showPass ? 'text' : 'password'}
+      className="form-control"
+      placeholder="Masukkan password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      onKeyDown={handleKeyDown}
+      disabled={locked}
+      autoComplete="current-password"
+    />
+    <button
+      type="button"
+      className="toggle-pass"
+      onClick={() => setShowPass(!showPass)}
+    >
+      {showPass ? '🙈' : '👁'}
+    </button>
+  </div>
 </div>
-
           {attempts > 0 && !locked && (
             <div style={{ fontSize: 11, color: 'var(--danger)', marginBottom: 8, textAlign: 'right' }}>
               Percobaan {attempts}/5
