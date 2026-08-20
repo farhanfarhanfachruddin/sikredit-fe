@@ -440,8 +440,18 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .login-stat-val { font-size: 22px; font-weight: 700; }
 .login-stat-label { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
 
-.password-field { position: relative; }
-.password-field .form-control { padding-right: 40px; }
+.password-field {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.password-field .form-control {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 40px;
+  box-sizing: border-box !important; /* Kunci biar padding gak nambah total panjang input */
+}
 .password-field .toggle-pass {
   position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
   background: none; border: none; color: var(--gray-400); font-size: 15px;
