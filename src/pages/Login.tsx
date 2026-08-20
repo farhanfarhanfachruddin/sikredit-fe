@@ -169,6 +169,22 @@ export default function Login() {
           </button>
 
           {/* Demo accounts */}
+
+          <div style={{ textAlign: 'center', marginBottom: 16 }}>
+  
+    href="/cek-tagihan"
+    target="_blank"
+    style={{
+      fontSize: 13,
+      color: 'var(--primary)',
+      textDecoration: 'none',
+      fontWeight: 600,
+    }}
+  >
+    🔍 Cek Tagihan Nasabah (Tanpa Login)
+  </a>
+</div>
+
           <div className="login-demo">
             <div className="login-demo-title">— Akun Demo —</div>
             <button className="demo-account" onClick={() => fillDemo('pemilik', 'pemilik123')}>
