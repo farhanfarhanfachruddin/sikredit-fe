@@ -169,38 +169,29 @@ export default function Login() {
           </button>
 
           {/* Demo accounts */}
-
-          <div style={{ textAlign: 'center', marginBottom: 16 }}>
-  
-    href="/cek-tagihan"
-    target="_blank"
-    style={{
-      fontSize: 13,
-      color: 'var(--primary)',
-      textDecoration: 'none',
-      fontWeight: 600,
-    }}
-  >
-    🔍 Cek Tagihan Nasabah (Tanpa Login)
-  </a>
-</div>
-
           <div className="login-demo">
             <div className="login-demo-title">— Akun Demo —</div>
             <button className="demo-account" onClick={() => fillDemo('pemilik', 'pemilik123')}>
               <div className="demo-avatar" style={{ background: 'var(--primary)' }}>P</div>
               <div className="demo-info">
-                <div className="demo-role">Pemilik (Admin)</div>
-                <div className="demo-cred">pemilik / pemilik123</div>
+                <div className="demo-role"></div>
+                <div className="demo-cred"></div>
               </div>
             </button>
             <button className="demo-account" onClick={() => fillDemo('operator', 'operator123')}>
               <div className="demo-avatar" style={{ background: 'var(--success)' }}>O</div>
               <div className="demo-info">
-                <div className="demo-role">Operator</div>
-                <div className="demo-cred">operator / operator123</div>
+                <div className="demo-role"></div>
+                <div className="demo-cred">3</div>
               </div>
             </button>
+          </div>
+
+           {/* Link Cek Tagihan */}
+          <div style={{ textAlign: 'center', marginTop: 16 }}>
+            <a href="/cek-tagihan" style={{ fontSize: 13, color: 'var(--primary)', textDecoration: 'none', fontWeight: 600 }}>
+              🔍 Cek Tagihan Nasabah (Tanpa Login)
+            </a>
           </div>
         </div>
       </div>
